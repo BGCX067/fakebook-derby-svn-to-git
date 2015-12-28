@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  width="400" height="300" currentState="NotLoggedIn">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import uk.ac.derby.fakebook.service.ServiceObject;
+			protected function btnLogIn_clickHandler(event:MouseEvent):void
+			{
+				ServiceObject.instance.doLogIn(txtUserName.text,txtPassword.text,doLoginCallback,doLoginFailed);
+				
+			}
+			
+			private function doLoginCallback (event:ResultEvent):void {
+				if(event.result){
+					this.currentState = "LoggedIn";
+				} else {
+					Alert.show("Wrong username or password");
+				}
+			}
+			private function doLoginFailed (event:FaultEvent):void {
+				Alert.show("Error "+event.message);
+			}	
+			
+			protected function logoutClick(event:MouseEvent):void
+			{
+				this.currentState = "NotLoggedIn";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="LoggedIn"/>
+		<s:State name="NotLoggedIn"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:TextInput id="txtUserName" includeIn="NotLoggedIn" left="81" top="10"/>
+	<s:TextInput id="txtPassword" includeIn="NotLoggedIn" left="81" top="50"/>
+	<s:Button id="btnLogIn" includeIn="NotLoggedIn" left="139" top="92" label="Log in"
+			  click="btnLogIn_clickHandler(event)"/>
+	<s:Label includeIn="NotLoggedIn" left="10" top="20" text="Username"/>
+	<s:Label includeIn="NotLoggedIn" left="10" top="60" text="Password"/>
+	<s:Button includeIn="LoggedIn" x="10" y="10" label="Button" click="logoutClick(event)"/>
+</s:Module>

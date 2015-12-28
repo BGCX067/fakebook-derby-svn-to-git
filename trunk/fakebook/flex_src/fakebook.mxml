@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:modules="uk.ac.derby.fakebook.modules.*"
+			   width="100%" height="100%" minWidth="955" minHeight="600">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:TabNavigator left="10" right="10" top="70" bottom="10">
+		<s:NavigatorContent width="100%" height="100%" label="Log In">
+			<modules:LogInModule left="0" top="0">
+			</modules:LogInModule>
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="My Profile">
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="My Wall">
+		</s:NavigatorContent>
+		<s:NavigatorContent width="100%" height="100%" label="Friends">
+		</s:NavigatorContent>
+	</mx:TabNavigator>
+	<s:Image left="10" top="10" source="@Embed('images/logo.jpg')"/>
+	<s:Image right="10" top="25" source="images/fakebook logo.jpg"/>
+</s:Application>
